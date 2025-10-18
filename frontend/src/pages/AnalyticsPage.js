@@ -3,8 +3,12 @@ import axios from 'axios';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 
 // API client configured to talk to your backend
+// Get the backend URL from the environment variable set in Vercel,
+// falling back to localhost for local development.
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
+
 const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000', // Your FastAPI backend URL
+  baseURL: API_BASE_URL,
 });
 
 const COLORS = ['#06b6d4', '#14b8a6', '#6366f1', '#ec4899', '#f97316', '#f59e0b', '#84cc16', '#22c55e', '#ef4444', '#3b82f6'];

@@ -2,10 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 // API client to talk to your backend
-const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000',
-});
+// Get the backend URL from the environment variable set in Vercel,
+// falling back to localhost for local development.
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://127.0.0.1:8000';
 
+const apiClient = axios.create({
+  baseURL: API_BASE_URL,
+});
 // Component for a single product card
 function ProductCard({ product, onGenerateDescription }) {
   const [newDescription, setNewDescription] = useState('');
